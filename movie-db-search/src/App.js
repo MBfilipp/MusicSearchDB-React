@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import LiMusic from './components/LiMusic';
 import TitleBar from './components/TitleBar';
+import { DebounceInput } from 'react-debounce-input';
 
 function App() {
   const [tracks, setTracks] = useState([]);
@@ -14,13 +15,12 @@ function App() {
       }
     })
     let data = await response.json();
-    console.log(data.data)
     setTracks(data.data);
   }
   return (
     <>
       <TitleBar title="Music Search"/>
-      <input type="text" placeholder="Input artist" onChange={handleChange} className="SearchTrack"/>
+      <DebounceInput debounceTimeout={700} placeholder="Input artist" onChange={handleChange} className="SearchTrack"/>
       <ul className="UlMusic">
         {(tracks === undefined || !tracks.length) 
           ? <div className="DivInput">
