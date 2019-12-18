@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import "../App.css";
 import ArtistInfo from './LiMusicComponents/ArtistInfo';
 import ButtonInfo from './LiMusicComponents/ButtonInfo';
 import ModalStatistic from './LiMusicComponents/ModalStatistic';
+import useOutsideClick from './HelpComponents/useOutsideClick';
 
 function LiMusic(props) {
     const [isOpen, setIsOpen] = useState(false);
+    const ref = useRef();
+
+    useOutsideClick(ref, () => {
+        if(isOpen) setIsOpen(false);
+    });
+
     return (
         <li className="LiMusic">
             <ArtistInfo item={props.item}>
@@ -14,7 +21,7 @@ function LiMusic(props) {
                 </audio>
             </ArtistInfo>
             <ButtonInfo function={() => setIsOpen(true)} />
-            <ModalStatistic item={props.item} isOpen={isOpen} function={() => setIsOpen(false)}/>
+            <ModalStatistic refModal={ref} item={props.item} isOpen={isOpen} function={() => setIsOpen(false)}/>
         </li>
     );   
 }

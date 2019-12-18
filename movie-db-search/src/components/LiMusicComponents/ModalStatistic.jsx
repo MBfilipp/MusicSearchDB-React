@@ -4,8 +4,9 @@ import StatictisBlock from './ModalComponents/StatisticBlock';
 import "../../App.css";
 
 export default function ModalStatistic(props) {
+
     return (
-        <Modal isOpen={props.isOpen} closeWindow={props.function} modal={props.item}>
+        <Modal refModal={props.refModal} isOpen={props.isOpen} closeWindow={props.function} modal={props.item}>
             <div className="Flex">
                 <StatictisBlock statisticInfo="Album" item={props.item.album.title}>
                     <img className="IconSong" src={props.item.album.cover} alt="Album"/>
