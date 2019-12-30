@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from '../Modal';
 import StatictisBlock from './ModalComponents/StatisticBlock';
+
 import "../../App.css";
 
 export default function ModalStatistic(props) {
